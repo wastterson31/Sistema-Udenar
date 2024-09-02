@@ -13,5 +13,5 @@ Route::get('/', function () {
 //ruta para el dashboard
 Route::get('/paginaPrincipal', [PantallasController::class, 'paginaPrincipal'])->name('paginaPrincipal');
 
-//Ruta para la recuperación de contraseña
+//Ruta para la recuperación de contraseña.
 Route::get('/RecuperacionContraseña', [PantallasController::class, 'RecuperacionContraseña'])->name('RecuperacionContraseña');
