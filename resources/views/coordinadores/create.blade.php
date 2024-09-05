@@ -2,71 +2,72 @@
 
 @section('content')
     <div class="container">
-        <h1>Crear Cohorte</h1>
+        <h1>Crear Coordinador</h1>
 
-        <form action="{{ route('cohortes.store') }}" method="POST">
-            @csrf
-
-            <div class="form-group">
-                <label for="codigo">Código:</label>
-                <input type="text" name="codigo" id="codigo" class="form-control" value="{{ old('codigo') }}" required>
-                @error('codigo')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
+        @endif
 
+        <form action="{{ route('coordinadores.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}"
+                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="identificacion">Identificación:</label>
+                <input type="text" name="identificacion" id="identificacion" class="form-control"
+                    value="{{ old('identificacion') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" id="direccion" class="form-control" value="{{ old('direccion') }}"
                     required>
-                @error('nombre')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
-
             <div class="form-group">
-                <label for="fecha_inicio">Fecha de Inicio:</label>
-                <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control"
-                    value="{{ old('fecha_inicio') }}" required>
-                @error('fecha_inicio')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+                <label for="telefono">Teléfono:</label>
+                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ old('telefono') }}"
+                    required>
             </div>
-
             <div class="form-group">
-                <label for="fecha_finalizacion">Fecha de Finalización:</label>
-                <input type="date" name="fecha_finalizacion" id="fecha_finalizacion" class="form-control"
-                    value="{{ old('fecha_finalizacion') }}">
-                @error('fecha_finalizacion')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+                <label for="correo">Correo:</label>
+                <input type="email" name="correo" id="correo" class="form-control" value="{{ old('correo') }}"
+                    required>
             </div>
-
             <div class="form-group">
-                <label for="numero_estudiantes">Número de Estudiantes:</label>
-                <input type="number" name="numero_estudiantes" id="numero_estudiantes" class="form-control"
-                    value="{{ old('numero_estudiantes') }}" required>
-                @error('numero_estudiantes')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="programa_id">Programa:</label>
-                <select name="programa_id" id="programa_id" class="form-control" required>
-                    <!-- Asegúrate de que `programas` esté disponible en la vista -->
-                    @foreach ($programas as $programa)
-                        <option value="{{ $programa->id }}" {{ old('programa_id') == $programa->id ? 'selected' : '' }}>
-                            {{ $programa->nombre }}
-                        </option>
-                    @endforeach
+                <label for="genero">Género</label>
+                <select name="genero" id="genero" class="form-control @error('genero') is-invalid @enderror">
+                    <option value="" disabled selected>Seleccionar</option>
+                    <option value="masculino" {{ old('genero') == 'masculino' ? 'selected' : '' }}>Masculino</option>
+                    <option value="femenino" {{ old('genero') == 'femenino' ? 'selected' : '' }}>Femenino</option>
+                    <option value="otro" {{ old('genero') == 'otro' ? 'selected' : '' }}>Otro</option>
                 </select>
-                @error('programa_id')
-                    <div class="text-danger">{{ $message }}</div>
+                @error('genero')
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Crear Cohorte</button>
+            <div class="form-group">
+                <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control"
+                    value="{{ old('fecha_nacimiento') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_vinculacion">Fecha de Vinculación:</label>
+                <input type="date" name="fecha_vinculacion" id="fecha_vinculacion" class="form-control"
+                    value="{{ old('fecha_vinculacion') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="acuerdo_nombramiento">Acuerdo de Nombramiento (Archivo adjunto):</label>
+                <input type="file" name="acuerdo_nombramiento" id="acuerdo_nombramiento" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Coordinador</button>
         </form>
     </div>
 @endsection

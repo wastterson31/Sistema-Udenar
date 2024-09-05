@@ -72,95 +72,87 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="genero">Género</label>
-                <select name="genero" id="genero" class="form-control @error('genero') is-invalid @enderror">
-                    <option value="masculino" {{ old('genero', $estudiante->genero) == 'masculino' ? 'selected' : '' }}>
-                        Masculino</option>
-                    <option value="femenino" {{ old('genero', $estudiante->genero) == 'femenino' ? 'selected' : '' }}>
-                        Femenino</option>
-                    <option value="otro" {{ old('genero', $estudiante->genero) == 'otro' ? 'selected' : '' }}>Otro
-                    </option>
+                <label for="genero">Género:</label>
+                <select name="genero" id="genero" class="form-control" required>
+                    <option value="masculino" {{ $estudiante->genero == 'masculino' ? 'selected' : '' }}>Masculino</option>
+                    <option value="femenino" {{ $estudiante->genero == 'femenino' ? 'selected' : '' }}>Femenino</option>
                 </select>
-                @error('genero')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento"
-                    class="form-control @error('fecha_nacimiento') is-invalid @enderror"
-                    value="{{ old('fecha_nacimiento', $estudiante->fecha_nacimiento) }}">
-                @error('fecha_nacimiento')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="semestre">Semestre</label>
-                <input type="number" name="semestre" id="semestre"
-                    class="form-control @error('semestre') is-invalid @enderror"
-                    value="{{ old('semestre', $estudiante->semestre) }}">
-                @error('semestre')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="estado_civil">Estado Civil</label>
-                <input type="text" name="estado_civil" id="estado_civil"
-                    class="form-control @error('estado_civil') is-invalid @enderror"
-                    value="{{ old('estado_civil', $estudiante->estado_civil) }}">
-                @error('estado_civil')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="fecha_ingreso">Fecha de Ingreso</label>
-                <input type="date" name="fecha_ingreso" id="fecha_ingreso"
-                    class="form-control @error('fecha_ingreso') is-invalid @enderror"
-                    value="{{ old('fecha_ingreso', $estudiante->fecha_ingreso) }}">
-                @error('fecha_ingreso')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="fecha_egreso">Fecha de Egreso</label>
-                <input type="date" name="fecha_egreso" id="fecha_egreso"
-                    class="form-control @error('fecha_egreso') is-invalid @enderror"
-                    value="{{ old('fecha_egreso', $estudiante->fecha_egreso) }}">
-                @error('fecha_egreso')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="cohorte_id">Cohorte</label>
-                <select name="cohorte_id" id="cohorte_id"
-                    class="form-control @error('cohorte_id') is-invalid @enderror">
-                    <option value="" disabled>Seleccionar</option>
-                    @foreach ($cohortes as $cohorte)
-                        <option value="{{ $cohorte->id }}"
-                            {{ old('cohorte_id', $estudiante->cohorte_id) == $cohorte->id ? 'selected' : '' }}>
-                            {{ $cohorte->nombre }}</option>
-                    @endforeach
-                </select>
-                @error('cohorte_id')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="programa_id">Programa</label>
-                <select name="programa_id" id="programa_id"
-                    class="form-control @error('programa_id') is-invalid @enderror">
-                    <option value="" disabled>Seleccionar</option>
-                    @foreach ($programas as $programa)
-                        <option value="{{ $programa->id }}"
-                            {{ old('programa_id', $estudiante->programa_id) == $programa->id ? 'selected' : '' }}>
-                            {{ $programa->nombre }}</option>
-                    @endforeach
-                </select>
-                @error('programa_id')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+                <div class="form-group">
+                    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                    <input type="date" name="fecha_nacimiento" id="fecha_nacimiento"
+                        class="form-control @error('fecha_nacimiento') is-invalid @enderror"
+                        value="{{ old('fecha_nacimiento', $estudiante->fecha_nacimiento) }}">
+                    @error('fecha_nacimiento')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="semestre">Semestre</label>
+                    <input type="number" name="semestre" id="semestre"
+                        class="form-control @error('semestre') is-invalid @enderror"
+                        value="{{ old('semestre', $estudiante->semestre) }}">
+                    @error('semestre')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="estado_civil">Estado Civil</label>
+                    <input type="text" name="estado_civil" id="estado_civil"
+                        class="form-control @error('estado_civil') is-invalid @enderror"
+                        value="{{ old('estado_civil', $estudiante->estado_civil) }}">
+                    @error('estado_civil')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="fecha_ingreso">Fecha de Ingreso</label>
+                    <input type="date" name="fecha_ingreso" id="fecha_ingreso"
+                        class="form-control @error('fecha_ingreso') is-invalid @enderror"
+                        value="{{ old('fecha_ingreso', $estudiante->fecha_ingreso) }}">
+                    @error('fecha_ingreso')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="fecha_egreso">Fecha de Egreso</label>
+                    <input type="date" name="fecha_egreso" id="fecha_egreso"
+                        class="form-control @error('fecha_egreso') is-invalid @enderror"
+                        value="{{ old('fecha_egreso', $estudiante->fecha_egreso) }}">
+                    @error('fecha_egreso')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="cohorte_id">Cohorte</label>
+                    <select name="cohorte_id" id="cohorte_id"
+                        class="form-control @error('cohorte_id') is-invalid @enderror">
+                        <option value="" disabled>Seleccionar</option>
+                        @foreach ($cohortes as $cohorte)
+                            <option value="{{ $cohorte->id }}"
+                                {{ old('cohorte_id', $estudiante->cohorte_id) == $cohorte->id ? 'selected' : '' }}>
+                                {{ $cohorte->nombre }}</option>
+                        @endforeach
+                    </select>
+                    @error('cohorte_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="programa_id">Programa</label>
+                    <select name="programa_id" id="programa_id"
+                        class="form-control @error('programa_id') is-invalid @enderror">
+                        <option value="" disabled>Seleccionar</option>
+                        @foreach ($programas as $programa)
+                            <option value="{{ $programa->id }}"
+                                {{ old('programa_id', $estudiante->programa_id) == $programa->id ? 'selected' : '' }}>
+                                {{ $programa->nombre }}</option>
+                        @endforeach
+                    </select>
+                    @error('programa_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
     </div>
 @endsection

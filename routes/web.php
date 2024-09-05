@@ -3,11 +3,14 @@
 use App\Models\Programa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PantallasController;
 use App\Http\Controllers\Administracion\Cohortes\CohorteController;
 use App\Http\Controllers\Administracion\Docentes\DocenteController;
 use App\Http\Controllers\Administracion\Programas\ProgramaController;
 use App\Http\Controllers\Administracion\Estudiantes\EstudianteController;
+use App\Http\Controllers\Administracion\Presidentes\PresidenteController;
+use App\Http\Controllers\Administracion\Programas\NuevoProgramaController;
 use App\Http\Controllers\Administracion\Coordinadores\CoordinadorController;
 
 // Ruta para la página principal
@@ -31,15 +34,17 @@ Route::get('coordinadores/{coordinador}/edit', [CoordinadorController::class, 'e
 Route::put('/coordinadores/{coordinador}', [CoordinadorController::class, 'update'])->name('coordinadores.update');
 Route::delete('coordinadores/{coordinador}', [CoordinadorController::class, 'destroy'])->name('coordinadores.destroy');
 
-
 // Rutas para los programas
-Route::get('/programas', [ProgramaController::class, 'index'])->name('programas.index');
-Route::get('programas/create', [ProgramaController::class, 'create'])->name('programas.create');
-Route::post('programas', [ProgramaController::class, 'store'])->name('programas.store');
-Route::get('programas/{programa}', [ProgramaController::class, 'show'])->name('programas.show');
-Route::get('programas/{programa}/edit', [ProgramaController::class, 'edit'])->name('programas.edit');
-Route::put('programas/{programa}', [ProgramaController::class, 'update'])->name('programas.update');
-Route::delete('programas/{programa}', [ProgramaController::class, 'destroy'])->name('programas.destroy');
+Route::prefix('administracion/programas')->group(function () {
+    Route::get('/', [NuevoProgramaController::class, 'index'])->name('programas.index');
+    Route::get('programas/create', [NuevoProgramaController::class, 'create'])->name('programas.create');
+    Route::post('/', [NuevoProgramaController::class, 'store'])->name('programas.store');
+    Route::get('programas/{programa}', [NuevoProgramaController::class, 'show'])->name('programas.show');
+    Route::get('programas/{programa}/edit', [NuevoProgramaController::class, 'edit'])->name('programas.edit');
+    Route::put('programas/{programa}', [NuevoProgramaController::class, 'update'])->name('programas.update');
+    Route::delete('programas/{programa}', [NuevoProgramaController::class, 'destroy'])->name('programas.destroy');
+});
+
 
 // Rutas para los estudiantes
 Route::prefix('administracion/estudiantes')->group(function () {
@@ -73,3 +78,12 @@ Route::prefix('docentes')->name('docentes.')->group(function () {
     Route::put('/{docente}', [DocenteController::class, 'update'])->name('update');
     Route::delete('/{docente}', [DocenteController::class, 'destroy'])->name('destroy');
 });
+
+
+
+//ruta de sección
+Route::post('login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+//ruta para el precidente
+Route::resource('presidentes', PresidenteController::class);

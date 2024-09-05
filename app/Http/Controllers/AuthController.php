@@ -13,21 +13,11 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
+        // dd($credentials);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            $user = Auth::user();
-
-            // if ($user->isPresidente()) {
-            //     return redirect()->route('admin.index');
-            // } elseif ($user->isCoordinador()) {
-            //     return redirect()->route('coordinador.index');
-            // } elseif ($user->isAsistente()) {
-            //     return redirect()->route('asistente.index');
-            // }
-
-            return redirect()->intended('dashboard');
+            return redirect()->route('paginaPrincipal');
         }
 
         return back()->withErrors([
