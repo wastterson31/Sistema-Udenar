@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('login');
 
-//ruta para el dashboard
+//ruta para ver pantalla del administrador
 Route::get('/paginaPrincipal', [PantallasController::class, 'paginaPrincipal'])->name('paginaPrincipal');
 
 //Ruta para la recuperación de contraseña
