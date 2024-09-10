@@ -15,4 +15,9 @@ class PantallasController extends Controller
     {
         return view('login.recuperarlogin');
     }
+
+    public function pantallaError()
+    {
+        return view('auth.login');
+    }
 }
