@@ -9,7 +9,7 @@ class Presidente extends Model
 {
     use HasFactory;
 
-    protected $table = 'precidentes';
+    protected $table = 'presidentes';
 
     protected $fillable = [
         'nombre',
@@ -20,6 +20,6 @@ class Presidente extends Model
         'genero',
         'fecha_nacimiento',
         'fecha_vinculacion',
-        'acuerdo_nombramiento',
+        'acuerdo_nombramiento'
     ];
 }

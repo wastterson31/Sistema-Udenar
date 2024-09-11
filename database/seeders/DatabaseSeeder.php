@@ -1,24 +1,30 @@
 <?php
 
-namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+
 use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\PaisesSeeder;
+use Database\Seeders\CiudadesSeeder;
+use Database\Seeders\CategoriaSeeder;
+use Database\Seeders\ViajesTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
-        // User::factory(10)->create();
-        $this->call([]);
+        $this->call([
+            PaisesSeeder::class,
+            CiudadesSeeder::class,
+            ViajesTableSeeder::class,
+            CategoriaSeeder::class,
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
         ]);
     }
 }

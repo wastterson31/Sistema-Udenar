@@ -70,9 +70,9 @@
     <!-- Error -->
     <div class="container-xxl container-p-y">
       <div class="misc-wrapper">
-        <h2 class="mb-2 mx-2">Page Not Found :(</h2>
-        <p class="mb-4 mx-2">Oops! 😖 The requested URL was not found on this server.</p>
-        <a href="index.html" class="btn btn-primary">Back to home</a>
+        <h2 class="mb-2 mx-2">Página no encontrada :(</h2>
+        <p class="mb-4 mx-2">¡Ups! 😖 La URL solicitada no se encontró en este servidor.</p>
+        <a href="{{ route('login') }}" class="btn btn-primary">Volver al login</a>
         <div class="mt-3">
           <img
             src="{{ asset('assets/img/illustrations/page-misc-error-light.png') }}"

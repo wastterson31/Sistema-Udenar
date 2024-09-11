@@ -33,8 +33,13 @@ class PresidenteController extends Controller
             'genero' => 'required|in:masculino,femenino,otro',
             'fecha_nacimiento' => 'required|date',
             'fecha_vinculacion' => 'required|date',
-            'acuerdo_nombramiento' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'acuerdo_nombramiento' => 'required|file|mimes:pdf,doc,docx|max:2048',
         ]);
+
+        $correo = $request->input('correo');
+        if (!Str::endsWith($correo, '@udenar.edu.co')) {
+            return redirect()->route('presidentes.create')->withErrors(['correo' => 'El correo electrónico debe tener la terminación @udenar.edu.co']);
+        }
 
         if ($request->hasFile('acuerdo_nombramiento')) {
             $file = $request->file('acuerdo_nombramiento');
@@ -103,6 +108,11 @@ class PresidenteController extends Controller
             'fecha_vinculacion' => 'required|date',
             'acuerdo_nombramiento' => 'nullable|file|mimes:pdf,doc,docx|max:5120',
         ]);
+
+        $correo = $request->input('correo');
+        if (!Str::endsWith($correo, '@udenar.edu.co')) {
+            return redirect()->route('presidentes.edit', $presidente)->withErrors(['correo' => 'El correo electrónico debe tener la terminación @udenar.edu.co.']);
+        }
 
         if ($request->hasFile('acuerdo_nombramiento')) {
             if ($presidente->acuerdo_nombramiento && file_exists(public_path('acuerdos/' . $presidente->acuerdo_nombramiento))) {

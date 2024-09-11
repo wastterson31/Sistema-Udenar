@@ -20,6 +20,12 @@ class Docente extends Model
         'genero',
         'fecha_nacimiento',
         'formacion_academica',
-        'areas_conocimiento'
+        'areas_conocimiento',
+        'programa_id'
     ];
+
+    public function programa()
+    {
+        return $this->belongsTo(Programa::class);
+    }
 }

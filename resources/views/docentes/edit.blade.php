@@ -66,6 +66,17 @@
                 <input type="text" name="areas_conocimiento" id="areas_conocimiento" class="form-control"
                     value="{{ old('areas_conocimiento', $docente->areas_conocimiento) }}">
             </div>
+            <div class="form-group">
+                <label for="programa_id">Programa:</label>
+                <select name="programa_id" id="programa_id" class="form-control">
+                    <option value="">Seleccionar</option>
+                    @foreach ($programas as $programa)
+                        <option value="{{ $programa->id }}"
+                            {{ old('programa_id', $docente->programa_id) == $programa->id ? 'selected' : '' }}>
+                            {{ $programa->nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Actualizar Docente</button>
         </form>
         <a href="{{ route('docentes.index') }}" class="btn btn-secondary mt-2">Volver a la lista</a>

@@ -67,9 +67,9 @@
                 <label for="genero">Género</label>
                 <select name="genero" id="genero" class="form-control @error('genero') is-invalid @enderror">
                     <option value="" disabled selected>Seleccionar</option>
-                    <option value="Masculino" {{ old('genero') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
-                    <option value="Femenino" {{ old('genero') == 'Femenino' ? 'selected' : '' }}>Femenino</option>
-                    <option value="Otro" {{ old('genero') == 'Otro' ? 'selected' : '' }}>Otro</option>
+                    <option value="masculino" {{ old('genero') == 'masculino' ? 'selected' : '' }}>Masculino</option>
+                    <option value="femenino" {{ old('genero') == 'femenino' ? 'selected' : '' }}>Femenino</option>
+                    <option value="otro" {{ old('genero') == 'otro' ? 'selected' : '' }}>Otro</option>
                 </select>
                 @error('genero')
                     <div class="invalid-feedback">{{ $message }}</div>
