@@ -50,6 +50,15 @@ Route::middleware(['pantallaError'])->group(function () {
     Route::put('/coordinadores/{coordinador}', [CoordinadorController::class, 'update'])->name('coordinadores.update');
     Route::delete('coordinadores/{coordinador}', [CoordinadorController::class, 'destroy'])->name('coordinadores.destroy');
 
+    // rutas para el asistente (crud)
+    Route::get('asistentes', [AsistenteController::class, 'index'])->name('asistentes.index');
+    Route::get('asistentes/create', [AsistenteController::class, 'create'])->name('asistentes.create');
+    Route::post('asistentes', [AsistenteController::class, 'store'])->name('asistentes.store');
+    Route::get('asistentes/{asistente}', [AsistenteController::class, 'show'])->name('asistentes.show');
+    Route::get('asistentes/{asistente}/edit', [AsistenteController::class, 'edit'])->name('asistentes.edit');
+    Route::put('/asistentes/{asistente}', [AsistenteController::class, 'update'])->name('asistentes.update');
+    Route::delete('asistentes/{asistente}', [AsistenteController::class, 'destroy'])->name('asistentes.destroy');
+
     // Rutas para los programas
     Route::prefix('administracion/programas')->group(function () {
         Route::get('/', [NuevoProgramaController::class, 'index'])->name('programas.index');
@@ -83,6 +92,7 @@ Route::middleware(['pantallaError'])->group(function () {
         Route::put('/{cohorte}', [CohorteController::class, 'update'])->name('update');
         Route::delete('/{cohorte}', [CohorteController::class, 'destroy'])->name('destroy');
     });
+
 
     // Rutas para los docentes
     Route::prefix('docentes')->name('docentes.')->group(function () {
