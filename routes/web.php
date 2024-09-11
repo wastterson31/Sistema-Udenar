@@ -94,6 +94,16 @@ Route::middleware(['pantallaError'])->group(function () {
         Route::delete('/{docente}', [DocenteController::class, 'destroy'])->name('destroy');
     });
 
+    // rutas para el presidente (crud)
+    Route::get('presidente', [PresidenteController::class, 'index'])->name('presidente.index');
+    Route::get('presidente/create', [PresidenteController::class, 'create'])->name('presidente.create');
+    Route::post('presidente', [PresidenteController::class, 'store'])->name('presidente.store');
+    Route::get('presidente/{coordinador}', [PresidenteController::class, 'show'])->name('presidente.show');
+    Route::get('presidente/{coordinador}/edit', [PresidenteController::class, 'edit'])->name('presidente.edit');
+    Route::put('/presidente/{coordinador}', [PresidenteController::class, 'update'])->name('presidente.update');
+    Route::delete('presidente/{coordinador}', [PresidenteController::class, 'destroy'])->name('presidente.destroy');
+
+
     //rutas para la configuracion del perfil del coordinador
     Route::get('/perfil', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/perfil', [ProfileController::class, 'update'])->name('profile.update');

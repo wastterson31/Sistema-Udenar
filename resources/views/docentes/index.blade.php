@@ -22,6 +22,7 @@
                     <th>Identificación</th>
                     <th>Correo</th>
                     <th>Teléfono</th>
+                    <th>Programa</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -33,15 +34,18 @@
                         <td>{{ $docente->identificacion }}</td>
                         <td>{{ $docente->correo }}</td>
                         <td>{{ $docente->telefono }}</td>
+                        <td>{{ $docente->programa ? $docente->programa->nombre : 'N/A' }}</td>
                         <td>
                             <a href="{{ route('docentes.show', $docente->id) }}" class="btn btn-info">Ver</a>
                             <a href="{{ route('docentes.edit', $docente->id) }}" class="btn btn-warning">Editar</a>
                             <form action="{{ route('docentes.destroy', $docente->id) }}" method="POST"
                                 style="display: inline-block;">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('¿Estás seguro de eliminar este docente?')">Eliminar</button>
+                                @if (Auth::user()->role === 'presidente')
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('¿Estás seguro de eliminar este docente?')">Eliminar</button>
+                                @endif
                             </form>
                         </td>
                     </tr>

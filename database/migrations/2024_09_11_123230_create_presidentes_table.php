@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePresidentesTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('presidentes', function (Blueprint $table) {
@@ -23,6 +28,11 @@ class CreatePresidentesTable extends Migration
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('presidentes');

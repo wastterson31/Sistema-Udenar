@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Docente extends Model
+class Presidente extends Model
 {
     use HasFactory;
 
-    protected $table = 'docentes';
+    protected $table = 'presidentes';
 
     protected $fillable = [
         'nombre',
@@ -19,13 +19,7 @@ class Docente extends Model
         'correo',
         'genero',
         'fecha_nacimiento',
-        'formacion_academica',
-        'areas_conocimiento',
-        'programa_id'
+        'fecha_vinculacion',
+        'acuerdo_nombramiento'
     ];
-
-    public function programa()
-    {
-        return $this->belongsTo(Programa::class);
-    }
 }

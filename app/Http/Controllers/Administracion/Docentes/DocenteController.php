@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Administracion\Docentes;
 
-use App\Http\Controllers\Controller;
 use App\Models\Docente;
+use App\Models\Programa;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DocenteController extends Controller
 {
@@ -16,7 +17,8 @@ class DocenteController extends Controller
 
     public function create()
     {
-        return view('docentes.create');
+        $programas = Programa::all();
+        return view('docentes.create', compact('programas'));
     }
 
     public function store(Request $request)
@@ -31,6 +33,7 @@ class DocenteController extends Controller
             'fecha_nacimiento' => 'nullable|date',
             'formacion_academica' => 'nullable|string|max:255',
             'areas_conocimiento' => 'nullable|string|max:255',
+            'programa_id' => 'nullable|exists:programas,id',
         ]);
 
         Docente::create($request->all());
@@ -45,7 +48,8 @@ class DocenteController extends Controller
 
     public function edit(Docente $docente)
     {
-        return view('docentes.edit', compact('docente'));
+        $programas = Programa::all();
+        return view('docentes.edit', compact('docente', 'programas'));
     }
 
     public function update(Request $request, Docente $docente)
@@ -60,6 +64,7 @@ class DocenteController extends Controller
             'fecha_nacimiento' => 'nullable|date',
             'formacion_academica' => 'nullable|string|max:255',
             'areas_conocimiento' => 'nullable|string|max:255',
+            'programa_id' => 'nullable|exists:programas,id',
         ]);
 
         $docente->update($request->all());

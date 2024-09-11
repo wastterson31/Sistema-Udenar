@@ -52,7 +52,7 @@
                 <div class="app-brand demo">
                     <a href="#" class="app-brand-link">
                         <span class="app-brand-logo demo">
-                            <!-- Logo SVG omitted for brevity -->
+                            <!-- Logo omitido -->
                         </span>
                         <span class="app-brand-text demo menu-text fw-bolder ms-2">SitenUder</span>
                     </a>
@@ -65,86 +65,93 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
-
-                    {{-- <li class="menu-item">
+                    <!-- Menú General -->
+                    <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-book"></i>
-                            <div data-i18n="Layouts">Presidente</div>
+                            <i class="menu-icon bx bx-user"></i>
+                            <div data-i18n="Layouts">Presidentes</div>
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="{{ route('presidentes.index') }}" class="menu-link">
+                                <a href="{{ route('presidente.index') }}" class="menu-link">
                                     <div data-i18n="Without menu">Todos los presidentes</div>
                                 </a>
                             </li>
                         </ul>
-                    </li> --}}
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-user"></i>
-                            <div data-i18n="Layouts">Coordinadores</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ route('coordinadores.index') }}" class="menu-link">
-                                    <div data-i18n="Without menu">Todos los coordinadores</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-book"></i>
-                            <div data-i18n="Layouts">Programas</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ route('programas.index') }}" class="menu-link">
-                                    <div data-i18n="Without menu">Todos los programas</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-calendar"></i>
-                            <div data-i18n="Layouts">Cohortes</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ route('cohortes.index') }}" class="menu-link">
-                                    <div data-i18n="Without menu">Todos los cohortes</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-group"></i>
-                            <div data-i18n="Layouts">Estudiantes</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ route('estudiantes.index') }}" class="menu-link">
-                                    <div data-i18n="Without menu">Todos los estudiantes</div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-chalkboard"></i>
-                            <div data-i18n="Layouts">Docentes</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ route('docentes.index') }}" class="menu-link">
-                                    <div data-i18n="Without menu">Todos los docentes</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    <!-- Menú para Presidente -->
+                    @if (Auth::user()->role === 'presidente')
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bx-book"></i>
+                                <div data-i18n="Layouts">Programas</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('programas.index') }}" class="menu-link">
+                                        <div data-i18n="Without menu">Todos los programas</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bx-calendar"></i>
+                                <div data-i18n="Layouts">Cohortes</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('cohortes.index') }}" class="menu-link">
+                                        <div data-i18n="Without menu">Todos los cohortes</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bx-group"></i>
+                                <div data-i18n="Layouts">Estudiantes</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('estudiantes.index') }}" class="menu-link">
+                                        <div data-i18n="Without menu">Todos los estudiantes</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+
+                    <!-- Menú común para Coordinadores y Asistentes -->
+                    @if (Auth::user()->role === 'asistente' || Auth::user()->role === 'coordinador' || Auth::user()->role === 'presidente')
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bx-user"></i>
+                                <div data-i18n="Layouts">Coordinadores</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('coordinadores.index') }}" class="menu-link">
+                                        <div data-i18n="Without menu">Todos los coordinadores</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bx-chalkboard"></i>
+                                <div data-i18n="Layouts">Docentes</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('docentes.index') }}" class="menu-link">
+                                        <div data-i18n="Without menu">Todos los docentes</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </aside>
 

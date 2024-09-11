@@ -13,6 +13,7 @@
         <p><strong>Fecha de Nacimiento:</strong> {{ $docente->fecha_nacimiento }}</p>
         <p><strong>Formación Académica:</strong> {{ $docente->formacion_academica }}</p>
         <p><strong>Áreas de Conocimiento:</strong> {{ $docente->areas_conocimiento }}</p>
+        <p><strong>Programa:</strong> {{ $docente->programa ? $docente->programa->nombre : 'N/A' }}</p>
 
         <a href="{{ route('docentes.edit', $docente->id) }}" class="btn btn-warning">Editar</a>
         <a href="{{ route('docentes.index') }}" class="btn btn-secondary">Volver a la lista</a>
