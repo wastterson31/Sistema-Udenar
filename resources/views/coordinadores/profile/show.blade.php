@@ -32,13 +32,13 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
                 <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $user->name) }}"
-                    readonly>
+                    required>
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Correo Electrónico</label>
                 <input type="email" name="email" class="form-control" id="email"
-                    value="{{ old('email', $user->email) }}" readonly>
+                    value="{{ old('email', $user->email) }}" required>
             </div>
 
             <div class="mb-3">
