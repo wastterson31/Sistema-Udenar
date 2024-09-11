@@ -12,6 +12,7 @@ use App\Http\Controllers\Administracion\Estudiantes\EstudianteController;
 use App\Http\Controllers\Administracion\Presidentes\PresidenteController;
 use App\Http\Controllers\Administracion\Programas\NuevoProgramaController;
 use App\Http\Controllers\Administracion\Coordinadores\CoordinadorController;
+use App\Http\Controllers\Administracion\Asistentes\AsistenteController;
 
 // Ruta para la página principal
 Route::get('/', function () {
@@ -33,6 +34,17 @@ Route::get('coordinadores/{coordinador}', [CoordinadorController::class, 'show']
 Route::get('coordinadores/{coordinador}/edit', [CoordinadorController::class, 'edit'])->name('coordinadores.edit');
 Route::put('/coordinadores/{coordinador}', [CoordinadorController::class, 'update'])->name('coordinadores.update');
 Route::delete('coordinadores/{coordinador}', [CoordinadorController::class, 'destroy'])->name('coordinadores.destroy');
+
+
+// rutas para el asistente (crud)
+Route::get('asistentes', [AsistenteController::class, 'index'])->name('asistentes.index');
+Route::get('asistentes/create', [AsistenteController::class, 'create'])->name('asistentes.create');
+Route::post('asistentes', [AsistenteController::class, 'store'])->name('asistentes.store');
+Route::get('asistentes/{asistente}', [AsistenteController::class, 'show'])->name('asistentes.show');
+Route::get('asistentes/{asistente}/edit', [AsistenteController::class, 'edit'])->name('asistentes.edit');
+Route::put('/asistentes/{asistente}', [AsistenteController::class, 'update'])->name('asistentes.update');
+Route::delete('asistentes/{asistente}', [AsistenteController::class, 'destroy'])->name('asistentes.destroy');
+
 
 // Rutas para los programas
 Route::prefix('administracion/programas')->group(function () {
