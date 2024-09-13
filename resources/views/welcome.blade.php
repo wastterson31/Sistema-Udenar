@@ -21,11 +21,39 @@
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .card {
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/config.js') }}"></script>
 </head>
 
 <body>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: '¡Éxito!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            });
+        </script>
+    @endif
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
             <div class="authentication-inner">
@@ -34,9 +62,10 @@
                         <div class="app-brand justify-content-center">
                             <a href="index.html" class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
-                                    <!-- Logo SVG -->
+                                    <img src="{{ asset('img/logo.png') }}" alt="Logo Udenar" style="width: 50px;">
                                 </span>
                                 <span class="app-brand-text demo text-body fw-bolder">Sistema Udenar</span>
+
                             </a>
                         </div>
                         <h4 class="mb-2">Bienvenidos a tu login 👋</h4>
@@ -62,7 +91,7 @@
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="password">Password</label>
-                                    <a href="#">
+                                    <a href="{{ route('RecuperacionContraseña') }}">
                                         <small>¿Has olvidado tu contraseña?</small>
                                     </a>
                                 </div>
@@ -97,6 +126,28 @@
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = [
+                '{{ asset('img/udenar.jpg') }}',
+                '{{ asset('img/udenar1.jpg') }}',
+                '{{ asset('img/udenar2.jpg') }}',
+                '{{ asset('img/udenar3.jpg') }}',
+                '{{ asset('img/udenar4.jpg') }}',
+                '{{ asset('img/udenar5.jpg') }}',
+            ];
+
+            let currentImageIndex = 0;
+            const changeBackground = () => {
+                document.body.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+            };
+
+            changeBackground();
+            setInterval(changeBackground, 2000);
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

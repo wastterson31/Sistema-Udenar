@@ -14,20 +14,12 @@ use App\Http\Controllers\Administracion\Estudiantes\EstudianteController;
 use App\Http\Controllers\Administracion\Presidentes\PresidenteController;
 use App\Http\Controllers\Administracion\Programas\NuevoProgramaController;
 use App\Http\Controllers\Administracion\Coordinadores\CoordinadorController;
+use App\Http\Controllers\Administracion\RecuperacionPassword\PasswordResetController;
 
 // Ruta para la página principal
 Route::get('/', function () {
     return view('welcome');
 })->name('login');
-
-// rutas para el presidente (crud)
-Route::get('presidente', [PresidenteController::class, 'index'])->name('presidente.index');
-Route::get('presidente/create', [PresidenteController::class, 'create'])->name('presidente.create');
-Route::post('presidente', [PresidenteController::class, 'store'])->name('presidente.store');
-Route::get('presidente/{coordinador}', [PresidenteController::class, 'show'])->name('presidente.show');
-Route::get('presidente/{coordinador}/edit', [PresidenteController::class, 'edit'])->name('presidente.edit');
-Route::put('/presidente/{coordinador}', [PresidenteController::class, 'update'])->name('presidente.update');
-Route::delete('presidente/{coordinador}', [PresidenteController::class, 'destroy'])->name('presidente.destroy');
 
 
 
@@ -43,6 +35,9 @@ Route::get('/RecuperacionContraseña', [PantallasController::class, 'Recuperacio
 
 //ruta para la pagina de error si no esta autenticado
 Route::get('/pantallaError', [PantallasController::class, 'pantallaError'])->name('pantallaError');
+
+//ruta para recuperar la contraseña
+Route::post('/password-reset', [PasswordResetController::class, 'resetPassword'])->name('password.reset');
 
 Route::middleware(['pantallaError'])->group(function () {
 
@@ -102,6 +97,15 @@ Route::middleware(['pantallaError'])->group(function () {
         Route::put('/{docente}', [DocenteController::class, 'update'])->name('update');
         Route::delete('/{docente}', [DocenteController::class, 'destroy'])->name('destroy');
     });
+
+    // rutas para el presidente (crud)
+    Route::get('presidente', [PresidenteController::class, 'index'])->name('presidente.index');
+    Route::get('presidente/create', [PresidenteController::class, 'create'])->name('presidente.create');
+    Route::post('presidente', [PresidenteController::class, 'store'])->name('presidente.store');
+    Route::get('presidente/{coordinador}', [PresidenteController::class, 'show'])->name('presidente.show');
+    Route::get('presidente/{coordinador}/edit', [PresidenteController::class, 'edit'])->name('presidente.edit');
+    Route::put('/presidente/{coordinador}', [PresidenteController::class, 'update'])->name('presidente.update');
+    Route::delete('presidente/{coordinador}', [PresidenteController::class, 'destroy'])->name('presidente.destroy');
 
 
     // rutas para el asistente (crud)

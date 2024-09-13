@@ -52,7 +52,7 @@
                 <div class="app-brand demo">
                     <a href="#" class="app-brand-link">
                         <span class="app-brand-logo demo">
-                            <!-- Logo omitido -->
+                            <img src="{{ asset('img/logo.png') }}" alt="Logo Udenar" style="width: 50px;">
                         </span>
                         <span class="app-brand-text demo menu-text fw-bolder ms-2">SitenUder</span>
                     </a>
@@ -253,6 +253,23 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/dashboards-analytics.js') }}"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            let menuLinks = document.querySelectorAll('.menu-link');
+
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    let carrusel = document.getElementById('inicioCarrusel');
+                    if (carrusel) {
+                        carrusel.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

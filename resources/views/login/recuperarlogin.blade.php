@@ -56,6 +56,25 @@
     <!-- Page CSS -->
     <!-- Page -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
+
+    <style>
+        body {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .card {
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
@@ -66,6 +85,22 @@
 
   <body>
     <!-- Content -->
+@if ($errors->any())
+<script>
+    Swal.fire({
+        title: 'Errores en el formulario',
+        html: `
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            `,
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+    });
+</script>
+@endif
 
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
@@ -137,20 +172,15 @@
               <!-- /Logo -->
               <h4 class="mb-2">¿Has olvidado tu contraseña? 🔒</h4>
               <p class="mb-4">Ingresa tu email y te enviaremos una contraseña de recuperacion</p>
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              <form id="formAuthentication" class="mb-3" action="{{ route('password.reset') }}" method="POST">
+                @csrf
                 <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="Enter your email"
-                    autofocus
-                  />
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" required />
                 </div>
                 <button class="btn btn-primary d-grid w-100">Enviar</button>
-              </form>
+            </form>
+
               <div class="text-center">
                 <a href="{{ route('login') }}" class="d-flex align-items-center justify-content-center">
                   <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
@@ -184,5 +214,28 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = [
+                '{{ asset('img/udenar.jpg') }}',
+                '{{ asset('img/udenar1.jpg') }}',
+                '{{ asset('img/udenar2.jpg') }}',
+                '{{ asset('img/udenar3.jpg') }}',
+                '{{ asset('img/udenar4.jpg') }}',
+                '{{ asset('img/udenar5.jpg') }}',
+            ];
+
+            let currentImageIndex = 0;
+            const changeBackground = () => {
+                document.body.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+            };
+
+            changeBackground();
+            setInterval(changeBackground, 2000);
+        });
+    </script>
+
   </body>
 </html>
