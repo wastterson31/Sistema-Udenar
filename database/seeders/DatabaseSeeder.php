@@ -1,8 +1,6 @@
 <?php
 
-
-
-
+use App\Models\Presidente;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\PaisesSeeder;
@@ -20,11 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            PaisesSeeder::class,
-            CiudadesSeeder::class,
-            ViajesTableSeeder::class,
-            CategoriaSeeder::class,
-
+            Presidente::class,
         ]);
     }
 }

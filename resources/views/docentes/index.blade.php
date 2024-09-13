@@ -36,15 +36,18 @@
                         <td>{{ $docente->telefono }}</td>
                         <td>{{ $docente->programa ? $docente->programa->nombre : 'N/A' }}</td>
                         <td>
-                            <a href="{{ route('docentes.show', $docente->id) }}" class="btn btn-info">Ver</a>
-                            <a href="{{ route('docentes.edit', $docente->id) }}" class="btn btn-warning">Editar</a>
+                            <a href="{{ route('docentes.show', $docente->id) }}" class="btn btn-info btn-sm">
+                                <i class="fas fa-eye"></i> Ver</a>
+                            <a href="{{ route('docentes.edit', $docente->id) }}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i>Editar</a>
                             <form action="{{ route('docentes.destroy', $docente->id) }}" method="POST"
                                 style="display: inline-block;">
                                 @csrf
                                 @if (Auth::user()->role === 'presidente')
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"
-                                        onclick="return confirm('¿Estás seguro de eliminar este docente?')">Eliminar</button>
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('¿Estás seguro de eliminar este presidente?');">
+                                        <i class="fas fa-trash"></i> Eliminar</button>
                                 @endif
                             </form>
                         </td>

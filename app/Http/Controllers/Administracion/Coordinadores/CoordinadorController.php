@@ -4,19 +4,33 @@ namespace App\Http\Controllers\Administracion\Coordinadores;
 
 use App\Models\User;
 use App\Models\Programa;
+use App\Models\Asistente;
 use App\Models\Coordinador;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class CoordinadorController extends Controller
 {
     public function index()
     {
-        $coordinadores = Coordinador::all();
+        $user = Auth::user();
+
+        if ($user->role === 'coordinador') {
+            $coordinadores = Coordinador::where('correo', $user->email)->get();
+        } elseif ($user->role === 'asistente') {
+            $asistente = Asistente::where('correo', $user->email)->first();
+            $coordinadores = Coordinador::where('id', $asistente->coordinador_id)->get();
+        } else {
+            $coordinadores = Coordinador::all();
+        }
+
         return view('coordinadores.index', compact('coordinadores'));
     }
+
+
 
     public function create()
     {

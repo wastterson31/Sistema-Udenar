@@ -8,6 +8,7 @@ use App\Http\Controllers\PantallasController;
 use App\Http\Controllers\Administracion\Cohortes\CohorteController;
 use App\Http\Controllers\Administracion\Docentes\DocenteController;
 use App\Http\Controllers\Administracion\Programas\ProgramaController;
+use App\Http\Controllers\Administracion\Asistentes\AsistenteController;
 use App\Http\Controllers\Administracion\Coordinadores\ProfileController;
 use App\Http\Controllers\Administracion\Estudiantes\EstudianteController;
 use App\Http\Controllers\Administracion\Presidentes\PresidenteController;
@@ -19,6 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('login');
 
+// rutas para el presidente (crud)
+Route::get('presidente', [PresidenteController::class, 'index'])->name('presidente.index');
+Route::get('presidente/create', [PresidenteController::class, 'create'])->name('presidente.create');
+Route::post('presidente', [PresidenteController::class, 'store'])->name('presidente.store');
+Route::get('presidente/{coordinador}', [PresidenteController::class, 'show'])->name('presidente.show');
+Route::get('presidente/{coordinador}/edit', [PresidenteController::class, 'edit'])->name('presidente.edit');
+Route::put('/presidente/{coordinador}', [PresidenteController::class, 'update'])->name('presidente.update');
+Route::delete('presidente/{coordinador}', [PresidenteController::class, 'destroy'])->name('presidente.destroy');
 
 
 
@@ -94,17 +103,21 @@ Route::middleware(['pantallaError'])->group(function () {
         Route::delete('/{docente}', [DocenteController::class, 'destroy'])->name('destroy');
     });
 
-    // rutas para el presidente (crud)
-    Route::get('presidente', [PresidenteController::class, 'index'])->name('presidente.index');
-    Route::get('presidente/create', [PresidenteController::class, 'create'])->name('presidente.create');
-    Route::post('presidente', [PresidenteController::class, 'store'])->name('presidente.store');
-    Route::get('presidente/{coordinador}', [PresidenteController::class, 'show'])->name('presidente.show');
-    Route::get('presidente/{coordinador}/edit', [PresidenteController::class, 'edit'])->name('presidente.edit');
-    Route::put('/presidente/{coordinador}', [PresidenteController::class, 'update'])->name('presidente.update');
-    Route::delete('presidente/{coordinador}', [PresidenteController::class, 'destroy'])->name('presidente.destroy');
+
+    // rutas para el asistente (crud)
+    Route::get('asistentes', [AsistenteController::class, 'index'])->name('asistentes.index');
+    Route::get('asistentes/create', [AsistenteController::class, 'create'])->name('asistentes.create');
+    Route::post('asistentes', [AsistenteController::class, 'store'])->name('asistentes.store');
+    Route::get('asistentes/{asistente}', [AsistenteController::class, 'show'])->name('asistentes.show');
+    Route::get('asistentes/{asistente}/edit', [AsistenteController::class, 'edit'])->name('asistentes.edit');
+    Route::put('/asistentes/{asistente}', [AsistenteController::class, 'update'])->name('asistentes.update');
+    Route::delete('asistentes/{asistente}', [AsistenteController::class, 'destroy'])->name('asistentes.destroy');
 
 
     //rutas para la configuracion del perfil del coordinador
     Route::get('/perfil', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/perfil', [ProfileController::class, 'update'])->name('profile.update');
 });
+
+//dominio de base de datos https://admin.alwaysdata.com/database/?type=mysql
+//https://admin.alwaysdata.com/

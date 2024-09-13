@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Crear Coordinador</h1>
+        <h1>Crear Asistente</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <form action="{{ route('coordinadores.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('asistentes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -52,6 +52,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            
 
             <div class="form-group">
                 <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
@@ -63,12 +64,22 @@
                 <input type="date" name="fecha_vinculacion" id="fecha_vinculacion" class="form-control"
                     value="{{ old('fecha_vinculacion') }}" required>
             </div>
-            <div class="form-group">
-                <label for="acuerdo_nombramiento">Acuerdo de Nombramiento (Archivo adjunto):</label>
-                <input type="file" name="acuerdo_nombramiento" id="acuerdo_nombramiento" class="form-control" required>
+
+             <div class="form-group">
+                <label for="coordinador_id">Coordinador</label>
+                <select name="coordinador_id" id="coordinador_id"
+                    class="form-control @error('coordinador_id') is-invalid @enderror">
+                    <option value="" disabled selected>Seleccionar</option>
+                    @foreach ($coordinadores as $coordinador)
+                        <option value="{{ $coordinador->id }}" {{ old('coordinador_id') == $coordinador->id ? 'selected' : '' }}>
+                            {{ $coordinador->nombre }}</option>
+                    @endforeach
+                </select>
+                @error('coordinador_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Crear Coordinador</button>
+            <button type="submit" class="btn btn-primary">Crear Asistente</button>
         </form>
-        <a href="{{ route('profesores.index') }}" class="btn btn-secondary mt-2">Volver a la lista</a>
     </div>
 @endsection

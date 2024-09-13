@@ -67,6 +67,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Crear Cohorte</button>
+            <a href="{{ route('cohortes.index') }}" class="btn btn-secondary mt-2">Volver a la lista</a>
         </form>
     </div>
 @endsection

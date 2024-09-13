@@ -66,22 +66,23 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Menú General -->
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon bx bx-user"></i>
-                            <div data-i18n="Layouts">Presidentes</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ route('presidente.index') }}" class="menu-link">
-                                    <div data-i18n="Without menu">Todos los presidentes</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+
 
                     <!-- Menú para Presidente -->
                     @if (Auth::user()->role === 'presidente')
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bx-user"></i>
+                                <div data-i18n="Layouts">Presidentes</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('presidente.index') }}" class="menu-link">
+                                        <div data-i18n="Without menu">Todos los presidentes</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="menu-item">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon bx bx-book"></i>
@@ -108,19 +109,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item">
-                            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                <i class="menu-icon bx bx-group"></i>
-                                <div data-i18n="Layouts">Estudiantes</div>
-                            </a>
-                            <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="{{ route('estudiantes.index') }}" class="menu-link">
-                                        <div data-i18n="Without menu">Todos los estudiantes</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                     @endif
 
                     <!-- Menú común para Coordinadores y Asistentes -->
@@ -140,6 +128,19 @@
                         </li>
                         <li class="menu-item">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bx-group"></i>
+                                <div data-i18n="Layouts">Asistente</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('asistentes.index') }}" class="menu-link">
+                                        <div data-i18n="Without menu">Todos los asistentes</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon bx bx-chalkboard"></i>
                                 <div data-i18n="Layouts">Docentes</div>
                             </a>
@@ -147,6 +148,19 @@
                                 <li class="menu-item">
                                     <a href="{{ route('docentes.index') }}" class="menu-link">
                                         <div data-i18n="Without menu">Todos los docentes</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bx-group"></i>
+                                <div data-i18n="Layouts">Estudiantes</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('estudiantes.index') }}" class="menu-link">
+                                        <div data-i18n="Without menu">Todos los estudiantes</div>
                                     </a>
                                 </li>
                             </ul>

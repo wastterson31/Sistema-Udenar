@@ -28,4 +28,9 @@ class Coordinador extends Model
     {
         return $this->hasMany(Programa::class);
     }
+
+    public function asistentes()
+    {
+        return $this->hasOne(Asistente::class, 'coordinador_id');
+    }
 }

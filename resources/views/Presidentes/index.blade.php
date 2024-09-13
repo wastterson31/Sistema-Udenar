@@ -34,14 +34,17 @@
                         <td>{{ $presidente->telefono }}</td>
                         <td>{{ $presidente->correo }}</td>
                         <td>
-                            <a href="{{ route('presidentes.show', $presidente->id) }}" class="btn btn-info">Ver</a>
-                            <a href="{{ route('presidentes.edit', $presidente->id) }}" class="btn btn-warning">Editar</a>
+                            <a href="{{ route('presidentes.show', $presidente->id) }}" class="btn btn-info btn-sm">
+                                <i class="fas fa-eye"></i> Ver</a>
+                            <a href="{{ route('presidentes.edit', $presidente->id) }}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i>Editar</a>
                             <form action="{{ route('presidentes.destroy', $presidente->id) }}" method="POST"
                                 style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('¿Estás seguro de eliminar este presidente?')">Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Estás seguro de eliminar este presidente?');">
+                                    <i class="fas fa-trash"></i> Eliminar</button>
                             </form>
                         </td>
                     </tr>

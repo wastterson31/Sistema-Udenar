@@ -46,14 +46,17 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('estudiantes.show', $estudiante->id) }}" class="btn btn-info btn-sm">Ver</a>
-                            <a href="{{ route('estudiantes.edit', $estudiante->id) }}"
-                                class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{{ route('estudiantes.show', $estudiante->id) }}" class="btn btn-info btn-sm">
+                                <i class="fas fa-eye"></i> Ver</a>
+                            <a href="{{ route('estudiantes.edit', $estudiante->id) }}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i>Editar</a>
                             <form action="{{ route('estudiantes.destroy', $estudiante->id) }}" method="POST"
                                 style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Estás seguro de eliminar este presidente?');">
+                                    <i class="fas fa-trash"></i> Eliminar</button>
                             </form>
                         </td>
                     </tr>

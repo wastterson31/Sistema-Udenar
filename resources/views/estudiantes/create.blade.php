@@ -145,6 +145,7 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{ route('estudiantes.index') }}" class="btn btn-secondary mt-2">Volver a la lista</a>
         </form>
     </div>
 @endsection
