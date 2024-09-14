@@ -19,7 +19,7 @@ use App\Http\Controllers\Administracion\RecuperacionPassword\PasswordResetContro
 // Ruta para la página principal
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('login');
 
 
 //ruta de sección

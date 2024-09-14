@@ -43,9 +43,16 @@ class AsistenteController extends Controller
 
     public function create()
     {
-        $coordinadores = Coordinador::all();
+        $user = Auth::user();
+        if ($user->role === 'coordinador') {
+            $coordinador = Coordinador::where('correo', $user->email)->first();
+            $coordinadores = $coordinador ? Coordinador::where('id', $coordinador->id)->get() : collect();
+        } else {
+            $coordinadores = Coordinador::all();
+        }
         return view('asistentes.create', compact('coordinadores'));
     }
+
 
     public function store(Request $request)
     {
@@ -120,7 +127,15 @@ class AsistenteController extends Controller
 
     public function edit(Asistente $asistente)
     {
-        $coordinadores = Coordinador::all();
+        $user = Auth::user();
+        if ($user->role === 'coordinador') {
+            $coordinador = Coordinador::where('correo', $user->email)->first();
+            $coordinadores = $coordinador ? Coordinador::where('id', $coordinador->id)->get() : collect();
+        } else {
+            // $coordinadores = Coordinador::where('id', $asistente->coordinador_id)->get();
+            $coordinadores = Coordinador::all();
+        }
+
         return view('asistentes.edit', compact('asistente', 'coordinadores'));
     }
 
