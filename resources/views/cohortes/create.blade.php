@@ -9,7 +9,7 @@
 
             <div class="form-group">
                 <label for="codigo">Código:</label>
-                <input type="text" name="codigo" id="codigo" class="form-control" value="{{ old('codigo') }}" required>
+                <input type="number" name="codigo" id="codigo" class="form-control" value="{{ old('codigo') }}" required>
                 @error('codigo')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

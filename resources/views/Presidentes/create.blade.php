@@ -4,27 +4,39 @@
     <div class="container">
         <h1>Crear Presidente</h1>
 
-        {{-- Mostrar mensajes de error si el correo no cumple con la terminación --}}
         @if ($errors->has('correo'))
             <div class="alert alert-danger">
                 {{ $errors->first('correo') }}
             </div>
         @endif
+        @if ($errors->has('identificacion'))
+            <div class="alert alert-danger">
+                {{ $errors->first('identificacion') }}
+            </div>
+        @endif
+
+        @if ($errors->has('acuerdo_nombramiento'))
+            <div class="alert alert-danger">
+                {{ $errors->first('acuerdo_nombramiento') }}
+            </div>
+        @endif
+
 
         <form action="{{ route('presidentes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}"
+                    required>
             </div>
             <div class="mb-3">
                 <label for="identificacion" class="form-label">Identificación</label>
-                <input type="text" class="form-control" id="identificacion" name="identificacion"
+                <input type="number" class="form-control" id="identificacion" name="identificacion"
                     value="{{ old('identificacion') }}" required>
             </div>
             <div class="mb-3">
                 <label for="telefono" class="form-label">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}"
+                <input type="number" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}"
                     required>
             </div>
             <div class="mb-3">

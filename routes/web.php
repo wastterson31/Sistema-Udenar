@@ -19,8 +19,7 @@ use App\Http\Controllers\Administracion\RecuperacionPassword\PasswordResetContro
 // Ruta para la página principal
 Route::get('/', function () {
     return view('welcome');
-})->name('login');
-
+})->name('home');
 
 
 //ruta de sección
@@ -37,7 +36,7 @@ Route::get('/RecuperacionContraseña', [PantallasController::class, 'Recuperacio
 Route::get('/pantallaError', [PantallasController::class, 'pantallaError'])->name('pantallaError');
 
 //ruta para recuperar la contraseña
-Route::post('/password-reset', [PasswordResetController::class, 'resetPassword'])->name('password.reset');
+Route::post('/contraseña', [PasswordResetController::class, 'resetPassword'])->name('contrase');
 
 Route::middleware(['pantallaError'])->group(function () {
 
@@ -99,13 +98,18 @@ Route::middleware(['pantallaError'])->group(function () {
     });
 
     // rutas para el presidente (crud)
-    Route::get('presidente', [PresidenteController::class, 'index'])->name('presidente.index');
-    Route::get('presidente/create', [PresidenteController::class, 'create'])->name('presidente.create');
-    Route::post('presidente', [PresidenteController::class, 'store'])->name('presidente.store');
-    Route::get('presidente/{coordinador}', [PresidenteController::class, 'show'])->name('presidente.show');
-    Route::get('presidente/{coordinador}/edit', [PresidenteController::class, 'edit'])->name('presidente.edit');
-    Route::put('/presidente/{coordinador}', [PresidenteController::class, 'update'])->name('presidente.update');
-    Route::delete('presidente/{coordinador}', [PresidenteController::class, 'destroy'])->name('presidente.destroy');
+    Route::get('presidentes', [PresidenteController::class, 'index'])->name('presidentes.index');
+    Route::get('presidentes/create', [PresidenteController::class, 'create'])->name('presidentes.create');
+    Route::post('presidentes', [PresidenteController::class, 'store'])->name('presidentes.store');
+    // Route::get('presidentes/{coordinador}', [PresidenteController::class, 'show'])->name('presidente.show');
+    // Route::get('presidentes/{coordinador}/edit', [PresidenteController::class, 'edit'])->name('presidente.edit');
+    // Route::put('/presidentes/{coordinador}', [PresidenteController::class, 'update'])->name('presidente.update');
+    // Route::delete('presidentes/{coordinador}', [PresidenteController::class, 'destroy'])->name('presidente.destroy');
+
+    Route::get('presidentes/{presidente}', [PresidenteController::class, 'show'])->name('presidentes.show');
+    Route::get('presidentes/{presidente}/edit', [PresidenteController::class, 'edit'])->name('presidentes.edit');
+    Route::put('/presidentes/{presidente}', [PresidenteController::class, 'update'])->name('presidentes.update');
+    Route::delete('presidentes/{presidente}', [PresidenteController::class, 'destroy'])->name('presidentes.destroy');
 
 
     // rutas para el asistente (crud)
@@ -117,6 +121,18 @@ Route::middleware(['pantallaError'])->group(function () {
     Route::put('/asistentes/{asistente}', [AsistenteController::class, 'update'])->name('asistentes.update');
     Route::delete('asistentes/{asistente}', [AsistenteController::class, 'destroy'])->name('asistentes.destroy');
 
+    //ruta para profesores
+    Route::get('profesores', [DocenteController::class, 'index'])->name('profesores.index');
+    Route::get('profesores/create', [DocenteController::class, 'create'])->name('profesores.create');
+    Route::post('profesores', [DocenteController::class, 'store'])->name('profesores.store');
+    // Route::get('profesores/{asistente}', [DocenteController::class, 'show'])->name('profesores.show');
+    // Route::get('profesores/{asistente}/edit', [DocenteController::class, 'edit'])->name('profesores.edit');
+    // Route::put('/profesores/{asistente}', [DocenteController::class, 'update'])->name('profesores.update');
+    // Route::delete('profesores/{asistente}', [DocenteController::class, 'destroy'])->name('profesores.destroy');
+    Route::get('profesores/{profesor}', [DocenteController::class, 'show'])->name('profesores.show');
+    Route::get('profesores/{profesor}/edit', [DocenteController::class, 'edit'])->name('profesores.edit');
+    Route::put('/profesores/{profesor}', [DocenteController::class, 'update'])->name('profesores.update');
+    Route::delete('profesores/{profesor}', [DocenteController::class, 'destroy'])->name('profesores.destroy');
 
     //rutas para la configuracion del perfil del coordinador
     Route::get('/perfil', [ProfileController::class, 'show'])->name('profile.show');

@@ -54,6 +54,9 @@
                 <input type="file" name="acuerdo_nombramiento" id="acuerdo_nombramiento" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Actualizar Coordinador</button>
+            <a href="{{ route('coordinadores.index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
         </form>
     </div>
 @endsection

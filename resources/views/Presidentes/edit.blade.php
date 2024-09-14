@@ -59,6 +59,9 @@
                 @endif
             </div>
             <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a href="{{ route('presidentes.index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
         </form>
     </div>
 @endsection

@@ -24,8 +24,8 @@
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" name="telefono" id="telefono" class="form-control"
-                    value="{{ $asistente->telefono }}" required>
+                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ $asistente->telefono }}"
+                    required>
             </div>
             <div class="form-group">
                 <label for="correo">Correo:</label>
@@ -49,13 +49,14 @@
                 <input type="date" name="fecha_vinculacion" id="fecha_vinculacion" class="form-control"
                     value="{{ $asistente->fecha_vinculacion }}" required>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label for="coordinador_id">Coordinador</label>
                 <select name="coordinador_id" id="coordinador_id"
                     class="form-control @error('coordinador_id') is-invalid @enderror">
                     <option value="" disabled selected>Seleccionar</option>
                     @foreach ($coordinadores as $coordinador)
-                        <option value="{{ $coordinador->id }}" {{ old('coordinador_id') == $coordinador->id ? 'selected' : '' }}>
+                        <option value="{{ $coordinador->id }}"
+                            {{ old('coordinador_id') == $coordinador->id ? 'selected' : '' }}>
                             {{ $coordinador->nombre }}</option>
                     @endforeach
                 </select>
@@ -64,6 +65,9 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">Actualizar asistente</button>
+            <a href="{{ route('asistentes.index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
         </form>
     </div>
 @endsection

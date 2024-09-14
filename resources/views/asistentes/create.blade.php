@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="identificacion">Identificación:</label>
-                <input type="text" name="identificacion" id="identificacion" class="form-control"
+                <input type="number" name="identificacion" id="identificacion" class="form-control"
                     value="{{ old('identificacion') }}" required>
             </div>
             <div class="form-group">
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ old('telefono') }}"
+                <input type="number" name="telefono" id="telefono" class="form-control" value="{{ old('telefono') }}"
                     required>
             </div>
             <div class="form-group">
@@ -52,7 +52,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            
+
 
             <div class="form-group">
                 <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
@@ -65,13 +65,14 @@
                     value="{{ old('fecha_vinculacion') }}" required>
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
                 <label for="coordinador_id">Coordinador</label>
                 <select name="coordinador_id" id="coordinador_id"
                     class="form-control @error('coordinador_id') is-invalid @enderror">
                     <option value="" disabled selected>Seleccionar</option>
                     @foreach ($coordinadores as $coordinador)
-                        <option value="{{ $coordinador->id }}" {{ old('coordinador_id') == $coordinador->id ? 'selected' : '' }}>
+                        <option value="{{ $coordinador->id }}"
+                            {{ old('coordinador_id') == $coordinador->id ? 'selected' : '' }}>
                             {{ $coordinador->nombre }}</option>
                     @endforeach
                 </select>
@@ -80,6 +81,9 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">Crear Asistente</button>
+            <a href="{{ route('asistentes.index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
         </form>
     </div>
 @endsection

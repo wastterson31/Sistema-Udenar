@@ -145,7 +145,7 @@
             };
 
             changeBackground();
-            setInterval(changeBackground, 2000);
+            setInterval(changeBackground, 5000);
         });
     </script>
 

@@ -20,16 +20,25 @@ class AsistenteController extends Controller
 
         if ($user->role === 'coordinador') {
             $coordinador = Coordinador::where('correo', $user->email)->first();
-            $asistentes = Asistente::where('coordinador_id', $coordinador->id)->get();
+            if ($coordinador) {
+                $asistentes = Asistente::where('coordinador_id', $coordinador->id)->get();
+            } else {
+                $asistentes = collect();
+            }
         } elseif ($user->role === 'asistente') {
             $asistente = Asistente::where('correo', $user->email)->first();
-            $asistentes = Asistente::where('id', $asistente->id)->with('coordinador')->get();
+            if ($asistente) {
+                $asistentes = Asistente::where('id', $asistente->id)->with('coordinador')->get();
+            } else {
+                $asistentes = collect();
+            }
         } else {
             $asistentes = Asistente::all();
         }
 
         return view('asistentes.index', compact('asistentes'));
     }
+
 
 
     public function create()
@@ -52,6 +61,9 @@ class AsistenteController extends Controller
             'coordinador_id' => 'nullable|exists:coordinadores,id'
         ]);
 
+        if (User::where('email', $request->correo)->exists()) {
+            return redirect()->route('asistentes.create')->withErrors(['correo' => 'El correo electrónico ya está en uso.']);
+        }
 
 
         if ($request->hasFile('acuerdo_nombramiento')) {
@@ -63,11 +75,6 @@ class AsistenteController extends Controller
         }
 
         $asistente = Asistente::create(array_merge($request->all(), ['acuerdo_nombramiento' => $fileName]));
-        //return $request;
-
-        if (User::where('email', $asistente->correo)->exists()) {
-            return redirect()->route('asistentes.create')->withErrors(['correo' => 'El correo electrónico ya está en uso.']);
-        }
 
         $password = Str::random(8);
 
@@ -82,7 +89,7 @@ class AsistenteController extends Controller
         $subject = 'Credenciales de acceso de Asistente';
         $message = "
             <h2>{$subject}</h2>
-            <p>Hola {asistente->nombre},</p>
+            <p>Hola {$asistente->nombre},</p>
             <p>Tu cuenta de asistente ha sido creada con éxito. Aquí están tus credenciales:</p>
             <ul>
                 <li><strong>Correo:</strong> {$asistente->correo}</li>
@@ -96,18 +103,20 @@ class AsistenteController extends Controller
                 ->subject($subject);
         });
 
-
-
-        return redirect()->route('asistentes.index')->with('success', 'asistente creado exitosamente y contraseña enviada por correo.');
+        return redirect()->route('asistentes.index')->with('success', 'Asistente creado exitosamente y contraseña enviada por correo.');
     }
 
 
 
     public function show(Asistente $asistente)
     {
+        if (!$asistente) {
+            return redirect()->route('asistentes.index')->withErrors('Asistente no encontrado.');
+        }
         $asistente->load('coordinador');
         return view('asistentes.show', compact('asistente'));
     }
+
 
     public function edit(Asistente $asistente)
     {

@@ -77,7 +77,7 @@
                             </a>
                             <ul class="menu-sub">
                                 <li class="menu-item">
-                                    <a href="{{ route('presidente.index') }}" class="menu-link">
+                                    <a href="{{ route('presidentes.index') }}" class="menu-link">
                                         <div data-i18n="Without menu">Todos los presidentes</div>
                                     </a>
                                 </li>

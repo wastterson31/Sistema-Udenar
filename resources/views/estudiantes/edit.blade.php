@@ -141,7 +141,7 @@
                     <label for="programa_id">Programa</label>
                     <select name="programa_id" id="programa_id"
                         class="form-control @error('programa_id') is-invalid @enderror">
-                        <option value="" disabled>Seleccionar</option>
+                        <option value="" {{ is_null($estudiante->programa_id) ? 'selected' : '' }}>Ninguno</option>
                         @foreach ($programas as $programa)
                             <option value="{{ $programa->id }}"
                                 {{ old('programa_id', $estudiante->programa_id) == $programa->id ? 'selected' : '' }}>
@@ -153,6 +153,9 @@
                     @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Actualizar</button>
+                <a href="{{ route('estudiantes.index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
         </form>
     </div>
 @endsection

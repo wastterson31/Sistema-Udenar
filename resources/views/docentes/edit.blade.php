@@ -78,7 +78,9 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Actualizar Docente</button>
+            <a href="{{ route('docentes.index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
         </form>
-        <a href="{{ route('docentes.index') }}" class="btn btn-secondary mt-2">Volver a la lista</a>
     </div>
 @endsection

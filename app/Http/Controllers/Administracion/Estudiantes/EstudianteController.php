@@ -61,6 +61,10 @@ class EstudianteController extends Controller
 
     public function show(Estudiante $estudiante)
     {
+        if (!$estudiante) {
+            return redirect()->route('estudiantes.index')->with('error', 'Estudiante no encontrado.');
+        }
+
         return view('estudiantes.show', compact('estudiante'));
     }
 
@@ -106,10 +110,15 @@ class EstudianteController extends Controller
             $data['fotografia'] = 'estudiantes/fotografias/' . $fileName;
         }
 
+        if (empty($request->input('programa_id'))) {
+            $data['programa_id'] = 'N/A';
+        }
+
         $estudiante->update($data);
 
         return redirect()->route('estudiantes.index')->with('success', 'Estudiante actualizado exitosamente.');
     }
+
 
 
     public function destroy(Estudiante $estudiante)

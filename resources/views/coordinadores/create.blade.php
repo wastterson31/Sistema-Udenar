@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="identificacion">Identificación:</label>
-                <input type="text" name="identificacion" id="identificacion" class="form-control"
+                <input type="number" name="identificacion" id="identificacion" class="form-control"
                     value="{{ old('identificacion') }}" required>
             </div>
             <div class="form-group">
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ old('telefono') }}"
+                <input type="number" name="telefono" id="telefono" class="form-control" value="{{ old('telefono') }}"
                     required>
             </div>
             <div class="form-group">

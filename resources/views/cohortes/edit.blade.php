@@ -69,6 +69,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Actualizar Cohorte</button>
+            <a href="{{ route('cohortes.index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
         </form>
     </div>
 @endsection
