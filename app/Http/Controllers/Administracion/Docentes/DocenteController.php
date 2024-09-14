@@ -24,7 +24,7 @@ class DocenteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:docentes',
             'identificacion' => 'required|string|max:20|unique:docentes',
             'correo' => 'required|email|max:255|unique:docentes',
             'direccion' => 'nullable|string|max:255',

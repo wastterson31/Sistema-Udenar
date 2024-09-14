@@ -111,7 +111,7 @@ class CoordinadorController extends Controller
     public function update(Request $request, Coordinador $coordinador)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:coordinador',
             'identificacion' => 'required|string|max:50|unique:coordinadores,identificacion,' . $coordinador->id,
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',

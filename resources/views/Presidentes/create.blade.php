@@ -3,7 +3,11 @@
 @section('content')
     <div class="container">
         <h1>Crear Presidente</h1>
-
+        @if ($errors->has('nombre'))
+            <div class="alert alert-danger">
+                {{ $errors->first('nombre') }}
+            </div>
+        @endif
         @if ($errors->has('correo'))
             <div class="alert alert-danger">
                 {{ $errors->first('correo') }}

@@ -57,7 +57,7 @@ class AsistenteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:asistentes',
             'identificacion' => 'required|string|max:50|unique:asistentes',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',

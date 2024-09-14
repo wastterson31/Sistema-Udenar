@@ -28,7 +28,7 @@ class EstudianteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:estudiantes',
             'identificacion' => 'required|string|max:20|unique:estudiantes',
             'codigo_estudiantil' => 'required|string|max:20|unique:estudiantes',
             'fotografia' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

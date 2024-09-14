@@ -24,7 +24,7 @@ class ProgramaController extends Controller
     {
         $request->validate([
             'codigo_snies' => 'required|unique:programas|max:255',
-            'nombre' => 'required|max:255',
+            'nombre' => 'required|string|unique:programas|max:255',
             'descripcion' => 'nullable|max:500',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'correo' => 'required|email|unique:programas|max:255',

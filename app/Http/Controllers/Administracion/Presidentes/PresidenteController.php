@@ -25,7 +25,7 @@ class PresidenteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:presidentes',
             'identificacion' => 'required|string|max:50|unique:presidentes',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
@@ -98,7 +98,7 @@ class PresidenteController extends Controller
     public function update(Request $request, Presidente $presidente)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:presidentes,nombre,' . $presidente->id,
             'identificacion' => 'required|string|max:50|unique:presidentes,identificacion,' . $presidente->id,
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',

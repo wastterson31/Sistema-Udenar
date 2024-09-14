@@ -25,7 +25,7 @@ class CohorteController extends Controller
     {
         $request->validate([
             'codigo' => 'required|string|max:50|unique:cohortes',
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:cohortes',
             'fecha_inicio' => 'required|date|before:fecha_finalizacion',
             'fecha_finalizacion' => 'nullable|date|after_or_equal:fecha_inicio',
             'numero_estudiantes' => 'required|integer|min:1',

@@ -4,6 +4,7 @@ use App\Models\Programa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PantallasController;
 use App\Http\Controllers\Administracion\Cohortes\CohorteController;
 use App\Http\Controllers\Administracion\Docentes\DocenteController;
@@ -137,6 +138,14 @@ Route::middleware(['pantallaError'])->group(function () {
     //rutas para la configuracion del perfil del coordinador
     Route::get('/perfil', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/perfil', [ProfileController::class, 'update'])->name('profile.update');
+
+    // rutas para los usuario (crud)
+    Route::get('profile', [UserController::class, 'index'])->name('profile.index');  // Para mostrar el listado o perfil
+    // Route::post('profile', [UserController::class, 'store'])->name('profile.store');
+    Route::get('profile/{user}', [UserController::class, 'show'])->name('user.show');  // Mostrar perfil específico
+    Route::get('profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::put('profile/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('profile/{user}', [UserController::class, 'destroy'])->name('profile.destroy');
 });
 
 //dominio de base de datos https://admin.alwaysdata.com/database/?type=mysql

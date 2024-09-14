@@ -109,6 +109,19 @@
                                 </li>
                             </ul>
                         </li>
+                        {{-- <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon bx bx-user"></i>
+                                <div data-i18n="Layouts">Usuarios</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('profile.index') }}" class="menu-link">
+                                        <div data-i18n="Without menu">Todos los usuarios</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li> --}}
                     @endif
 
                     <!-- Menú común para Coordinadores y Asistentes -->
