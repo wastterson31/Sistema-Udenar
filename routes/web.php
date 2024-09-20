@@ -37,7 +37,12 @@ Route::get('/RecuperacionContraseña', [PantallasController::class, 'Recuperacio
 Route::get('/pantallaError', [PantallasController::class, 'pantallaError'])->name('pantallaError');
 
 //ruta para recuperar la contraseña
-Route::post('/contraseña', [PasswordResetController::class, 'resetPassword'])->name('contrase');
+Route::post('/contraseña', [PasswordResetController::class, 'resetPassword'])->name('password.reset');
+
+//rutas para la verificación
+Route::get('/verificar-codigo', [AuthController::class, 'mostrarFormularioVerificacion'])->name('verificarCodigo');
+Route::post('/verificar-codigo', [AuthController::class, 'verificarCodigo'])->name('postVerificarCodigo');
+
 
 Route::middleware(['pantallaError'])->group(function () {
 

@@ -10,9 +10,9 @@
             </div>
             <div class="card-body">
                 <p><strong>Código:</strong> {{ $cohorte->codigo }}</p>
-                <p><strong>Fecha de Inicio:</strong> {{ $cohorte->fecha_inicio->format('d/m/Y') }}</p>
+                <p><strong>Fecha de Inicio:</strong> {{ $cohorte->fecha_inicio }}</p>
                 <p><strong>Fecha de Finalización:</strong>
-                    {{ $cohorte->fecha_finalizacion ? $cohorte->fecha_finalizacion->format('d/m/Y') : 'N/A' }}</p>
+                    {{ $cohorte->fecha_finalizacion ? $cohorte->fecha_finalizacion : 'N/A' }}</p>
                 <p><strong>Número de Estudiantes:</strong> {{ $cohorte->numero_estudiantes }}</p>
                 <p><strong>Programa:</strong> {{ $cohorte->programa->nombre }}</p>
             </div>
