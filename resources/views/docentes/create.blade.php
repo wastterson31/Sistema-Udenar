@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Crear Nuevo Docente</h1>
-        <form action="{{ route('docentes.store') }}" method="POST">
+        <form action="{{ route('docentes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -69,6 +69,10 @@
                             {{ $programa->nombre }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="acuerdo_nombramiento">Acuerdo de Nombramiento:</label>
+                <input type="file" name="acuerdo_nombramiento" id="acuerdo_nombramiento" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Crear Docente</button>
         </form>

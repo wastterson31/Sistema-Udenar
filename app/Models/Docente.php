@@ -21,7 +21,8 @@ class Docente extends Model
         'fecha_nacimiento',
         'formacion_academica',
         'areas_conocimiento',
-        'programa_id'
+        'programa_id',
+        'acuerdo_nombramiento',
     ];
 
     public function programa()

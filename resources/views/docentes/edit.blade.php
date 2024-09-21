@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Editar Docente</h1>
-        <form action="{{ route('docentes.update', $docente->id) }}" method="POST">
+        <form action="{{ route('docentes.update', $docente->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -76,6 +76,17 @@
                             {{ $programa->nombre }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="acuerdo_nombramiento">Acuerdo de Nombramiento (opcional):</label>
+                <input type="file" name="acuerdo_nombramiento" id="acuerdo_nombramiento" class="form-control">
+                @error('acuerdo_nombramiento')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+                @if ($docente->acuerdo_nombramiento)
+                    <p>Archivo actual: <a href="{{ asset('acuerdos/' . $docente->acuerdo_nombramiento) }}"
+                            target="_blank">{{ $docente->acuerdo_nombramiento }}</a></p>
+                @endif
             </div>
             <button type="submit" class="btn btn-primary">Actualizar Docente</button>
             <a href="{{ route('docentes.index') }}" class="btn btn-secondary">

@@ -14,6 +14,14 @@
         <p><strong>Formación Académica:</strong> {{ $docente->formacion_academica }}</p>
         <p><strong>Áreas de Conocimiento:</strong> {{ $docente->areas_conocimiento }}</p>
         <p><strong>Programa:</strong> {{ $docente->programa ? $docente->programa->nombre : 'N/A' }}</p>
+        <p><strong>Acuerdo de Nombramiento:</strong>
+            @if ($docente->acuerdo_nombramiento)
+                <a href="{{ asset('acuerdos/' . $docente->acuerdo_nombramiento) }}"
+                    target="_blank">{{ $docente->acuerdo_nombramiento }}</a>
+            @else
+                N/A
+            @endif
+        </p>
 
         <a href="{{ route('docentes.edit', $docente->id) }}" class="btn btn-warning">Editar</a>
         <a href="{{ route('docentes.index') }}" class="btn btn-secondary">Volver a la lista</a>

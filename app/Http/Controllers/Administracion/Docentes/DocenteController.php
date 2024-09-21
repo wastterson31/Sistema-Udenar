@@ -34,9 +34,18 @@ class DocenteController extends Controller
             'formacion_academica' => 'nullable|string|max:255',
             'areas_conocimiento' => 'nullable|string|max:255',
             'programa_id' => 'nullable|exists:programas,id',
+            'acuerdo_nombramiento' => 'nullable|file|mimes:doc,docx,xls,xlsx',
         ]);
 
-        Docente::create($request->all());
+        if ($request->hasFile('acuerdo_nombramiento')) {
+            $file = $request->file('acuerdo_nombramiento');
+            $fileName = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path('acuerdos'), $fileName);
+        } else {
+            $fileName = null;
+        }
+
+        Docente::create(array_merge($request->all(), ['acuerdo_nombramiento' => $fileName]));
 
         return redirect()->route('docentes.index')->with('success', 'Docente creado exitosamente.');
     }
@@ -65,12 +74,26 @@ class DocenteController extends Controller
             'formacion_academica' => 'nullable|string|max:255',
             'areas_conocimiento' => 'nullable|string|max:255',
             'programa_id' => 'nullable|exists:programas,id',
+            'acuerdo_nombramiento' => 'nullable|file|mimes:doc,docx,xlsx|max:2048',
         ]);
 
-        $docente->update($request->all());
+        if ($request->hasFile('acuerdo_nombramiento')) {
+            if ($docente->acuerdo_nombramiento && file_exists(public_path('acuerdos/' . $docente->acuerdo_nombramiento))) {
+                unlink(public_path('acuerdos/' . $docente->acuerdo_nombramiento));
+            }
+
+            $file = $request->file('acuerdo_nombramiento');
+            $fileName = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path('acuerdos'), $fileName);
+        } else {
+            $fileName = $docente->acuerdo_nombramiento;
+        }
+
+        $docente->update(array_merge($request->all(), ['acuerdo_nombramiento' => $fileName]));
 
         return redirect()->route('docentes.index')->with('success', 'Docente actualizado exitosamente.');
     }
+
     public function destroy(Docente $docente)
     {
         $docente->delete();
